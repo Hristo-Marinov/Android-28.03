@@ -35,7 +35,7 @@ public class SharedPreferencesManager {
             return new JSONArray(jsonString);
         } catch (JSONException e) {
             e.printStackTrace();
-            return new JSONArray(); 
+            return new JSONArray();
         }
     }
 }
