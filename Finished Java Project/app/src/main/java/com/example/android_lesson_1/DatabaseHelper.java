@@ -65,9 +65,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
             return deletedRows > 0;
         }
-    public void deleteAllRecords() {
+    public void clearAllRows() {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, null, null);
+        db.beginTransaction();
+        Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name!='android_metadata' AND name!='sqlite_sequence'", null);
+        while (cursor.moveToNext()) {
+            String tableName = cursor.getString(0);
+            db.delete(tableName, null, null);
+        }
+        cursor.close();
+        db.setTransactionSuccessful();
+        db.endTransaction();
         db.close();
     }
 

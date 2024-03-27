@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -45,18 +44,6 @@ public class MainActivity extends AppCompatActivity {
         customAdapter = new RowAdapter(MainActivity.this,this, book_id, book_title, book_author, book_pages);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
-        Button btnDeleteAll = findViewById(R.id.btnClearDatabase);
-
-
-        // Set OnClickListener for the "Delete All" button
-        btnDeleteAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Call the method to clear the database
-                clearDatabase();
-            }
-        });
     }
     void data(){
         Cursor cursor = myDB.readAllData();
@@ -71,20 +58,5 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-    }
-
-    private void setDatabaseClearedFlag(boolean cleared) {
-        SharedPreferences.Editor editor = getSharedPreferences("MyPrefs", MODE_PRIVATE).edit();
-        editor.putBoolean("database_cleared", cleared);
-        editor.apply();
-    }
-
-    private boolean isDatabaseCleared() {
-        SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        return prefs.getBoolean("database_cleared", false);
-    }
-    private void clearDatabase() {
-        myDB.deleteAllRecords();
-        Toast.makeText(this, "Database cleared successfully!", Toast.LENGTH_SHORT).show();
     }
 }

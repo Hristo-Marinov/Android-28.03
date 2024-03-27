@@ -38,7 +38,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:text="Title 1"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 android:textStyle="bold"
                 android:textColor="#000"
                 app:layout_constraintStart_toEndOf="@+id/book_id_txt"

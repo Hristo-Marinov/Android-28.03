@@ -34,7 +34,7 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DatabaseHelper mydb = new DatabaseHelper(UpdateActivity.this);
-                confirmDialog();
+                mydb.deleteBookByTitle(title);
             }
         });
         getAndSetIntentData();
@@ -59,19 +59,29 @@ public class UpdateActivity extends AppCompatActivity {
         }
     }
     void confirmDialog(){
-        delete_button.setOnClickListener(new View.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + title + " ?");
+        builder.setMessage("Are you sure you want to delete " + title + " ?");
+        DatabaseHelper myDB = new DatabaseHelper(this);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                DatabaseHelper myDB = new DatabaseHelper(UpdateActivity.this); // 'this' refers to your Context
-                String bookTitle = title;
-                boolean result = myDB.deleteBookByTitle(bookTitle);
-
-                if (!result) {
-                    Toast.makeText(UpdateActivity.this, "Book deleted successfully", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(UpdateActivity.this, "Book not found or could not be deleted", Toast.LENGTH_SHORT).show();
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(!myDB.deleteBookByTitle(title)){
+                    Toast.makeText(getApplicationContext(), "Failed to Delete.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "Successfully Deleted.", Toast.LENGTH_SHORT).show();
                 }
+                finish();
+            }
+
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
             }
         });
+        builder.create().show();
+
     }
 }

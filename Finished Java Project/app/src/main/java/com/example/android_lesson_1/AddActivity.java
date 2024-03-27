@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -12,6 +11,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android_lesson_1.DatabaseHelper;
+import com.example.android_lesson_1.SharedPreferencesManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,19 +20,21 @@ import org.json.JSONObject;
 
 public class AddActivity extends AppCompatActivity {
 
-    private TextView data;
     private Button btnAddBooks;
     private String url = "https://simple-books-api.glitch.me/books?type=fiction";
     private SharedPreferencesManager sharedPreferencesManager;
 
-    DatabaseHelper myDB;
+    private DatabaseHelper myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
         sharedPreferencesManager = new SharedPreferencesManager(this);
-        data = findViewById(R.id.bookTitle);
+        
+        myDB = new DatabaseHelper(this);
+
         btnAddBooks = findViewById(R.id.btnAddBooks);
 
         btnAddBooks.setOnClickListener(new View.OnClickListener() {
@@ -60,13 +63,14 @@ public class AddActivity extends AppCompatActivity {
 
         Volley.newRequestQueue(this).add(request);
     }
+
     private void insertBooksIntoDatabase(JSONArray booksArray) {
         try {
             for (int i = 0; i < booksArray.length(); i++) {
                 JSONObject bookObject = booksArray.getJSONObject(i);
                 String title = bookObject.optString("name", "");
-                String author = bookObject.optString("author", "");
-                int pages = bookObject.optInt("pages", 0);
+                String author = bookObject.optString("author", "HM");
+                int pages = bookObject.optInt("pages", 169);
 
                 boolean isInserted = myDB.addBook(title, author, pages);
                 if (!isInserted) {
@@ -78,5 +82,4 @@ public class AddActivity extends AppCompatActivity {
             Toast.makeText(AddActivity.this, "Error processing books data", Toast.LENGTH_SHORT).show();
         }
     }
-
 }
