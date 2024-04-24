@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "706198660169",
+    "project_id": "book-login-85347",
+    "storage_bucket": "book-login-85347.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706198660169:android:b162f1ab8e46b8b53d8b98",
+        "android_client_info": {
+          "package_name": "com.example.android_lesson_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI_Sy4W62ROgx2uC3ILa0r-11RC0FbCQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

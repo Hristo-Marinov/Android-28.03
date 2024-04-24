@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/emailreg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:maxLines="1"/>
+
+    <EditText
+        android:id="@+id/passwordreg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:maxLines="1"
+        android:layout_below="@id/emailreg"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTER"
+        android:layout_below="@id/passwordreg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:padding="12dp"/>
+
+    <TextView
+        android:id="@+id/loginNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:text="click_to_login"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
