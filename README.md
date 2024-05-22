@@ -1,15 +1,13 @@
-# Android-28.03
+# Android-Books-App
 Project
 
-Това е завършеният проект.
+![download](https://github.com/Hristo-Marinov/Transformers-Shop/assets/129615640/bb6bcf72-fcc0-4788-b913-8b27254e7625)
 
-Използвани неща в проекта:
+## Това е завършеният проект.
 
--SQLite
-
--SharedPreference
-
--Adapter
-
--API https://simple-books-api.glitch.me
+## Използвани неща в проекта:
+1. SQLite
+2. SharedPreference
+3. Adapter
+4. API https://simple-books-api.glitch.me
 
