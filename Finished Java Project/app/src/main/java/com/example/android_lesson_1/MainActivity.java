@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDB;
     ArrayList<String> book_id, book_title, book_author, book_pages;
     RowAdapter customAdapter;
+
+    private Button btnAllPosts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,17 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnAllPosts = findViewById(R.id.btnAllPosts);
+
+        btnAllPosts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start AllPostsActivity
+                startActivity(new Intent(MainActivity.this, AllPostsActivity.class));
+            }
+        });
+
         add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
