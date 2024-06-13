@@ -40,4 +40,3 @@ public class Post {
         this.likes = likes;
     }
 }
-

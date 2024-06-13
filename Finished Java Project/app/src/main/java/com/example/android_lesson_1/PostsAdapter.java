@@ -3,17 +3,14 @@ package com.example.android_lesson_1;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.List;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHolder> {
@@ -27,7 +24,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post_card, parent, false);
         return new PostViewHolder(view);
     }
 
@@ -44,15 +41,21 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
 
     public static class PostViewHolder extends RecyclerView.ViewHolder {
 
+        private ImageView imageView;
         private TextView tvPostTitle, tvPostContent;
 
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvPostTitle = itemView.findViewById(android.R.id.text1);
-            tvPostContent = itemView.findViewById(android.R.id.text2);
+            imageView = itemView.findViewById(R.id.postImage);
+            tvPostTitle = itemView.findViewById(R.id.tvPostTitle);
+            tvPostContent = itemView.findViewById(R.id.tvPostContent);
         }
 
         public void bind(Post post) {
+
+                imageView.setImageResource(R.drawable.book);
+
+
             tvPostTitle.setText(post.getTitle());
             tvPostContent.setText(post.getContent());
         }
